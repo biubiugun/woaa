@@ -96,6 +96,7 @@ Statement *parseStatement(TokenScanner &scanner,string line){
             } catch (...) {
                 error("SYNTAX ERROR");
             }
+            cout << 1 << endl;
             token = scanner.nextToken();
             if(token != "THEN"){
                 delete exp1;
@@ -236,13 +237,13 @@ void INPUT_::execute(EvalState &state) {
             break;
         }
         if(scanner.getTokenType(token) != NUMBER || scanner.hasMoreTokens()){
-            cout << "INVALID NUMBER1\n" << " ? ";
+            cout << "INVALID NUMBER\n" << " ? ";
             continue;
         }
         try{
             value = stringToInteger(token);
         } catch (...) {
-            cout << "INVALID NUMBER2\n" << " ? ";
+            cout << "INVALID NUMBER\n" << " ? ";
             continue;
         }
         state.setValue(name,value);
