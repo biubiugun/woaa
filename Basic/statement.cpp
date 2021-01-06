@@ -208,41 +208,41 @@ void INPUT_::execute(EvalState &state) {
     TokenType type_of_token;
     scanner.ignoreWhitespace();
     scanner.scanNumbers();
-    scanner.setInput(getLine(" ? "));
-    if(!scanner.hasMoreTokens()){
-        getLine(" ? ");
-    }
     while(true){
+        scanner.setInput(getLine(" ? "));
+        if(!scanner.hasMoreTokens()){
+            getLine(" ? ");
+        }
         int value;
         token = scanner.nextToken();
         if(token == "-"){
             if(!scanner.hasMoreTokens()){
-                cout << "INVALID NUMBER\n" << " ? ";
+                cout << "INVALID NUMBER\n";
                 continue;
             }
             token = scanner.nextToken();
             type_of_token = scanner.getTokenType(token);
             if(type_of_token != NUMBER || scanner.hasMoreTokens()){
-                cout << "INVALID NUMBER\n" << " ? ";
+                cout << "INVALID NUMBER\n";
                 continue;
             }
             try {
                 value = stringToInteger(token);
             } catch (...) {
-                cout << "INVALID NUMBER\n" << " ? ";
+                cout << "INVALID NUMBER\n";
                 continue;
             }
             state.setValue(name,-value);
             break;
         }
         if(scanner.getTokenType(token) != NUMBER || scanner.hasMoreTokens()){
-            cout << "INVALID NUMBER\n" << " ? ";
+            cout << "INVALID NUMBER\n";
             continue;
         }
         try{
             value = stringToInteger(token);
         } catch (...) {
-            cout << "INVALID NUMBER\n" << " ? ";
+            cout << "INVALID NUMBER\n";
             continue;
         }
         state.setValue(name,value);
