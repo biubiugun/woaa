@@ -245,6 +245,7 @@ void INPUT_::execute(EvalState &state) {
             cout << "INVALID NUMBER\n";
             continue;
         }
+        cout << "\n";
         state.setValue(name,value);
         break;
     }
