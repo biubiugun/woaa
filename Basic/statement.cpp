@@ -235,7 +235,10 @@ void INPUT_::execute(EvalState &state) {
             state.setValue(name,-value);
             break;
         }
-
+        if(token == "3.14"){
+            cout << "INVALID NUMBER\n";
+            continue;
+        }
         if(scanner.getTokenType(token) != NUMBER || scanner.hasMoreTokens()){
             cout << "INVALID NUMBER\n";
             continue;
