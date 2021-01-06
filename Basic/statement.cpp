@@ -235,7 +235,13 @@ void INPUT_::execute(EvalState &state) {
             state.setValue(name,-value);
             break;
         }
-        if(token == "3.14"){
+        int jud = 0;
+        for(auto & i : token){
+            if(i == '.'){
+                jud = 1;
+            }
+        }
+        if(jud == 1){
             cout << "INVALID NUMBER\n";
             continue;
         }
