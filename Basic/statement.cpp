@@ -119,16 +119,25 @@ Statement *parseStatement(TokenScanner &scanner,string line){
             then = new GOTO_(stringToInteger(token));
             return new IF_(exp1,op,exp2,then);
         }else{
+            int n = 0;
+            for(auto & i : line){
+                if(i == '='){
+                    n ++;
+                }
+            }
+            if(n != 1){error("SYNTAX ERROR");}
             string str1,str2;
             string op = "=";
-            while(scanner.hasMoreTokens() && token != "="){
+            while(scanner.hasMoreTokens()){
                 token = scanner.nextToken();
+                if(token == "=")break;
                 str1 += token + ' ';
             }
-            token = scanner.nextToken();
-            while(scanner.hasMoreTokens() && token != "THEN"){
+
+            while(scanner.hasMoreTokens()){
                 token = scanner.nextToken();
-                str1 += token + ' ';
+                if(token == "THEN")break;
+                str2 += token + ' ';
             }
             if(!scanner.hasMoreTokens()){error("SYNTAX ERROR");}
             else token = scanner.nextToken();
@@ -140,7 +149,6 @@ Statement *parseStatement(TokenScanner &scanner,string line){
             try{
                 stringToInteger(token);
             } catch (...) {
-                cout << 1 << endl;
                 error("SYNTAX ERROR");
             }
             then = new GOTO_(stringToInteger(token));
