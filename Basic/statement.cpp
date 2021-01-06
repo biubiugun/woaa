@@ -96,6 +96,7 @@ Statement *parseStatement(TokenScanner &scanner,string line){
             } catch (...) {
                 error("SYNTAX ERROR");
             }
+            cout << 1 << endl;
             token = scanner.nextToken();
             if(token != "THEN"){
                 delete exp1;
